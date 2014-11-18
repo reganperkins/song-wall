@@ -83,6 +83,37 @@ post '/rating' do
   redirect '/songs'
 end
 
+get '/review' do
+  @review = Review.all
+  erb :'song/:id'
+end
+
+post '/review' do
+  # Class.find(1)
+  # id_number = 1
+  # Class.find(id_number)
+  binding.pry
+  @track = Track.find params[:track_id]
+  @review = Review.create(
+    user_review: params[:user_review],
+    user_id: session[:user_id],
+    track_id: params[:track_id],
+    rating:  params[:rating]
+  )
+  # :id = params[:track_id]
+  erb :'songs/show'
+end
+
+
+# post '/review' do
+#   @user_rating = Rating.create(
+#     user_id: session[:user_id],
+#     track_id: params[:track_id],
+#     rating:  params[:rating]
+#   )
+#   redirect '/songs/:id'
+# end
+
 get '/songs/:id' do
   @track = Track.find params[:id]
   erb :'songs/show'

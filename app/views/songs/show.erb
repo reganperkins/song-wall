@@ -1,0 +1,45 @@
+<h1><%= @track.song_title %></h1>
+
+<p>Author: <%= @track.artist %></p>
+
+<a href="<%= @track.url %>"><%= @track.url  %></a>
+
+<hr/>
+<!-- <a href="/songs">Back to All Songs</a> -->
+
+<% if @review %>
+  <% @review.each do |comment| %>
+
+    <div>
+      <p> Posted by <%= comment.user.username %> </p>
+
+      <p> Rating <%= comment.average_rating %> </p>
+      
+      <form method="post" action="/review">
+        <!-- <input type="text" name="rating" placeholder="Song rating"> -->
+        <select name="review">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <input type="hidden" name="track_id" value="<%= song.id %>">
+        <input type="submit" value="Submit">
+      </form>
+
+    </div>
+  <% end %>
+<% end %>
+
+
+
+
+<form method="post" action="/review">
+  <textarea name="review" cols="60" rows="6"></textarea> <br />
+  <input type="hidden" name="track_id">
+  <input type="submit" value="Submit">
+</form>
+
+<a href="/songs">Back to All Songs</a>

@@ -18,6 +18,13 @@ ActiveRecord::Schema.define(version: 20141118115500) do
     t.integer "rating"
   end
 
+  create_table "reviews", force: true do |t|
+    t.integer "user_id"
+    t.integer "track_id"
+    t.integer "rating"
+    t.string  "user_review"
+  end
+
   create_table "tracks", force: true do |t|
     t.string   "song_title"
     t.string   "artist"
