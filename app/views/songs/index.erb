@@ -1,15 +1,25 @@
-<h1>Songs</h1>
+<div class="tracks-wrapper">
+
+  <h1>Songs</h1>
 
 <% if @tracks %>
 
 <% @tracks.each do |song| %>
+
   <div class="track">
     <h3><%= song.song_title %> <small>(by: <%= song.artist %>)</small></h3>
     <a href="<%= song.url %>"><%= song.url %></a>
     <p> Rating <%= song.average_rating %> </p>
     
     <form method="post" action="/rating">
-      <input type="text" name="rating" placeholder="Song rating">
+      <!-- <input type="text" name="rating" placeholder="Song rating"> -->
+      <select name="rating">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
       <input type="hidden" name="track_id" value="<%= song.id %>">
       <input type="submit" value="Submit">
     </form>
@@ -18,5 +28,8 @@
 <% end %>
 
 <a href="/songs/new">Add a song</a>
+<a href="/logout"> Logout </a>
+
 
 <%end%>
+</div>

@@ -1,9 +1,28 @@
-<h1>Sign up </h1>
+<div class="wrapper">
+  <div class="login-wrapper">
+    <div id="login">
+      <h1>Sign up </h1>
 
-<form method="post" action="/signup">
-  <input type="text" name="username" placeholder="Username">
-  <input type="email" name="email" placeholder="Email" >
-  <input type="password" name="password" placeholder="Password">
-  <input type="submit" value="Submit" class=".btn-success">
-</form>
+      <% if @user && @user.errors.any? %>
+        <div>
+          <strong>Some issues with your signup, please fix them:</strong>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
+      <form method="post" action="/signup">
+        <span class="fontawesome-user"></span><input type="text" name="username" placeholder="Username">
+        <span class="fontawesome-lock"></span><input type="email" name="email" placeholder="Email" >
+        <span class="fontawesome-envelope"></span><input type="password" name="password" placeholder="Password">
+        <input type="submit" value="Submit">
+      </form>
+
+      <a href="/login"> Or login </a>
+
+    </div>
+  </div>
+</div>

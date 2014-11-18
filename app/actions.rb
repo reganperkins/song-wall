@@ -2,6 +2,10 @@
 
 enable :sessions
 
+before do
+  @current_page = 'default'
+end
+
 helpers do
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -9,25 +13,31 @@ helpers do
 end
 
 get '/' do
+  @current_page = 'login'
   erb :'index'
 end
 
 post '/signup' do
-  @user = User.create!(
+  @user = User.new(
     email: params[:email],
     password: params[:password],
     username: params[:username]
-  )
-  session[:user_id] = @user.id
-  redirect '/songs'
+    )
+  if @user.save
+    session[:user_id] = @user.id
+    redirect '/songs'
+  else
+    erb :'index'
+  end
 end
 
 get '/login' do
+  @current_page = 'login'
   erb :'login'
 end
 
 post '/login' do
-  @user = User.where(username: params[:username], password: params[:password]).first
+  @user = User.where(email: params[:email], password: params[:password]).first
  
   if @user
     session[:user_id] = @user.id
@@ -59,6 +69,7 @@ post '/songs' do
 end
 
 get '/songs/new' do
+  @current_page = 'songs'
   erb :'songs/new'
 end
 
@@ -69,4 +80,9 @@ post '/rating' do
     rating:  params[:rating]
   )
   redirect '/songs'
+end
+
+get '/songs/:id' do
+  @track = Track.find params[:id]
+  erb :'messages/show'
 end
