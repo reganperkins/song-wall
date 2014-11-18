@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117125000) do
+ActiveRecord::Schema.define(version: 20141118115500) do
 
   create_table "ratings", force: true do |t|
     t.integer "user_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20141117125000) do
     t.string   "song_title"
     t.string   "artist"
     t.string   "url"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

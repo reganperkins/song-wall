@@ -62,7 +62,8 @@ post '/songs' do
   @track = Track.new(
     song_title: params[:song_title],
     url: params[:url],
-    artist:  params[:artist]
+    artist:  params[:artist],
+    user_id: current_user.id
   )
   @track.save
   redirect '/songs'
@@ -84,5 +85,5 @@ end
 
 get '/songs/:id' do
   @track = Track.find params[:id]
-  erb :'messages/show'
+  erb :'songs/show'
 end

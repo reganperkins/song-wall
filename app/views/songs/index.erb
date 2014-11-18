@@ -7,8 +7,10 @@
 <% @tracks.each do |song| %>
 
   <div class="track">
-    <h3><%= song.song_title %> <small>(by: <%= song.artist %>)</small></h3>
+    <h3><a href="/songs/<%= song.id %>"><%= song.song_title %> </a><small>(by: <%= song.artist %>)</small></h3>
     <a href="<%= song.url %>"><%= song.url %></a>
+    <p> Posted by <%= song.user.username%> </p>
+
     <p> Rating <%= song.average_rating %> </p>
     
     <form method="post" action="/rating">
@@ -20,6 +22,7 @@
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
+
       <input type="hidden" name="track_id" value="<%= song.id %>">
       <input type="submit" value="Submit">
     </form>
