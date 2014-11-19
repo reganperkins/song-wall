@@ -6,6 +6,7 @@ class AddTracks < ActiveRecord::Migration
       t.string :artist
       t.string :url
       t.integer :user_id
+      # t.integer :rating
       t.timestamps
     end
   end

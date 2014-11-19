@@ -75,7 +75,7 @@ get '/songs/new' do
 end
 
 post '/rating' do
-  @user_rating = Rating.create(
+  @user_rating = SongRating.create(
     user_id: session[:user_id],
     track_id: params[:track_id],
     rating:  params[:rating]
@@ -84,23 +84,18 @@ post '/rating' do
 end
 
 get '/review' do
-  @review = Review.all
+  @comment = Comment.all
   erb :'song/:id'
 end
 
 post '/review' do
-  # Class.find(1)
-  # id_number = 1
-  # Class.find(id_number)
-  binding.pry
   @track = Track.find params[:track_id]
-  @review = Review.create(
+  @comment = Comment.create(
     user_review: params[:user_review],
     user_id: session[:user_id],
     track_id: params[:track_id],
     rating:  params[:rating]
   )
-  # :id = params[:track_id]
   erb :'songs/show'
 end
 

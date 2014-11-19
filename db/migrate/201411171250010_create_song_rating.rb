@@ -1,7 +1,7 @@
-class AddUserRating < ActiveRecord::Migration
+class CreateSongRating < ActiveRecord::Migration
 
   def up
-    create_table :ratings do |t|
+    create_table :song_ratings do |t|
       t.integer :user_id
       t.integer :track_id
       t.integer :rating
@@ -10,6 +10,6 @@ class AddUserRating < ActiveRecord::Migration
   end
 
   def down
-    drop_table :ratings
+    drop_table :song_ratings
   end
 end

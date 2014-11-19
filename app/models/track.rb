@@ -1,12 +1,13 @@
 class Track < ActiveRecord::Base
 
-  has_many :ratings
-  has_many :reviews
+  has_many :song_ratings
+  has_many :comments
   belongs_to :user
 
-## calculate the rating based on votes 
+# calculate the rating based on votes 
   def average_rating
-    self.ratings.average(:rating).to_f.round(1)
+
+    self.song_ratings.average(:rating).to_f.round(1)
   end
 
 end

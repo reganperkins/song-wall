@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118115500) do
+ActiveRecord::Schema.define(version: 201411171250010) do
 
-  create_table "ratings", force: true do |t|
-    t.integer "user_id"
-    t.integer "track_id"
-    t.integer "rating"
-  end
-
-  create_table "reviews", force: true do |t|
+  create_table "comments", force: true do |t|
     t.integer "user_id"
     t.integer "track_id"
     t.integer "rating"
     t.string  "user_review"
+  end
+
+  create_table "song_ratings", force: true do |t|
+    t.integer "user_id"
+    t.integer "track_id"
+    t.integer "rating"
   end
 
   create_table "tracks", force: true do |t|

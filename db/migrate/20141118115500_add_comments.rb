@@ -1,7 +1,7 @@
-class AddReview < ActiveRecord::Migration
+class AddComments < ActiveRecord::Migration
 
   def up
-    create_table :reviews do |t|
+    create_table :comments do |t|
       t.integer :user_id
       t.integer :track_id
       t.integer :rating
@@ -11,7 +11,7 @@ class AddReview < ActiveRecord::Migration
   end
 
   def down
-    drop_table :reviews
+    drop_table :comments
   end
 
 end
